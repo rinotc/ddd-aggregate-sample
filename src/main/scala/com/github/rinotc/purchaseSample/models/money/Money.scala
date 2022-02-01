@@ -16,7 +16,7 @@ import java.util.Currency
 final class Money(val amount: BigDecimal, val currency: Currency) extends ValueObject with Ordered[Money] {
 
   require(
-    amount.scale == currency.getDefaultFractionDigits,
+    amount.scale <= currency.getDefaultFractionDigits,
     s"Scale of amount does not match currency, amount scale: ${amount.scale}, currency: $currency, currency scale: ${currency.getDefaultFractionDigits}"
   )
 
