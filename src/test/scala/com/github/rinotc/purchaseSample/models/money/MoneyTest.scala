@@ -47,7 +47,9 @@ class MoneyTest extends UnitTest {
       Money(300, JPY) must be > Money(100, JPY)
     }
 
-    "plus" in {}
+    "plus" in {
+      Money(300, JPY).plus(Money(500, JPY)) mustBe Money(700, JPY)
+    }
 
     "compare" in {}
   }
