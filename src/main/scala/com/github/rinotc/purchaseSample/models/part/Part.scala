@@ -10,7 +10,7 @@ import com.github.rinotc.purchaseSample.models.money.Money
  * @param name   商品名
  * @param price  価格
  */
-final class Part(val id: PartId, val name: String, val price: Money) extends Entity[PartId] {
+final class Part private (val id: PartId, val name: String, val price: Money) extends Entity[PartId] {
 
   override def canEqual(other: Any): Boolean = other.isInstanceOf[Part]
 
@@ -22,4 +22,8 @@ final class Part(val id: PartId, val name: String, val price: Money) extends Ent
   override def hashCode(): Int = id.##
 
   override def toString = s"Item(id = ${id.value}, name = $name, price = $price)"
+}
+
+object Part {
+  def apply(id: PartId, name: String, price: Money) = new Part(id, name, price)
 }
