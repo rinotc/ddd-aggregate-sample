@@ -5,9 +5,7 @@ import support.UnitTest
 class MoneyTest extends UnitTest {
   "MoneyTest" should {
 
-    val JPY = Money.JPY
-    val USD = Money.USD
-    val EUR = Money.EUR
+    import Money._
 
     "equals" should {
       "量と通貨単位が同値ならば、同値とみなす" in {
@@ -59,6 +57,5 @@ class MoneyTest extends UnitTest {
     "times" in {
       Money(333, JPY).times(3) mustBe Money(999, JPY)
     }
-
   }
 }
