@@ -16,11 +16,6 @@ class MoneyTest extends UnitTest {
         (Money(100, JPY) == Money(100, JPY)) mustBe true
       }
     }
-
-    "times" in {
-      Money(333, JPY).times(3) mustBe Money(999, JPY)
-    }
-
     "$less$eq" should {
       "通貨単位が異なるもの同士の比較はできない" in {
         assertThrows[IllegalArgumentException] {
@@ -47,10 +42,23 @@ class MoneyTest extends UnitTest {
       Money(300, JPY) must be > Money(100, JPY)
     }
 
-    "plus" in {
-      Money(300, JPY).plus(Money(500, JPY)) mustBe Money(700, JPY)
+    "plus" should {
+      "同じ通貨ならば加算できる" in {
+        Money(300, JPY).plus(Money(500, JPY)) mustBe Money(800, JPY)
+      }
+
+      "異なる通貨の場合は、加算できない" in {
+        val usd = Money(500.0, USD)
+        val yen = Money(300, JPY)
+        assertThrows[IllegalArgumentException] {
+          yen plus usd
+        }
+      }
     }
 
-    "compare" in {}
+    "times" in {
+      Money(333, JPY).times(3) mustBe Money(999, JPY)
+    }
+
   }
 }
