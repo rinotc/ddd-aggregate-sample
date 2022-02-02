@@ -7,7 +7,7 @@ import com.github.rinotc.purchaseSample.models.EntityId
  *
  * @param value IDの値
  */
-final class PurchaseOrderLineItemId(val value: Int) extends EntityId[Int] {
+final class PurchaseOrderLineItemId private (val value: Int) extends EntityId[Int] {
 
   require(value >= 1, "購入注文品目のIDの値は1以上")
 
